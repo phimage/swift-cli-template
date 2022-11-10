@@ -24,7 +24,7 @@ steps:
       fallback:
         from: path.rootdir
 
-  - copy: Sources/repo_name/repo_name.swift
+  - copy: Sources/main/main.swift
     to:
       eval: Sources/{{ tmplr.repo_name }}/{{ tmplr.repo_name }}.swift
 
