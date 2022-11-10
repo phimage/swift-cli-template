@@ -14,32 +14,18 @@ jobs:
       - uses: actions/checkout@v3
       - run: swiftlint --strict
 
-  test_on_macOS:
-    name: Build and Test on macOS
-    runs-on: macos-latest
+  build_and_test:
+    name: Build and Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
     - uses: actions/checkout@v3
+    - uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "5.7"
     - name: Build
       run: ./build.sh
     - name: Run tests
       run: ./test.sh
-      
-  test_on_Linux:
-    name: Build and Test on Linux
-    runs-on: Ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup swiftenv
-        run: |
-          git clone https://github.com/kylef/swiftenv.git ~/.swiftenv
-          export SWIFTENV_ROOT="$HOME/.swiftenv"
-          export PATH="$SWIFTENV_ROOT/bin:$PATH"
-          eval "$(swiftenv init -)"
-          echo "$PATH" >> $GITHUB_PATH
-      - run: rm -f .swift-version
-      - name: Install Swift
-        run: swiftenv install "5.5" --skip-existing
-      - name: Build
-        run: ./build.sh
-      - name: Run tests
-        run: ./test.sh
