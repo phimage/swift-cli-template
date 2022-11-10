@@ -36,4 +36,4 @@ steps:
   - update: test.sh
   - update: Package.swift
   - update: .github/FUNDING.yml
-  - update: Sources/{{ tmplr.repo_name }}/{{ tmplr.repo_name }}.swift
+  - update: Sources/main/main.swift
