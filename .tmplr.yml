@@ -24,12 +24,6 @@ steps:
       fallback:
         from: path.rootdir
 
-  - copy: Sources/main/main.swift
-    to:
-      eval: Sources/{{ tmplr.repo_name }}/{{ tmplr.repo_name }}.swift
-
-  - remove: Sources/repo_name/repo_name.swift
-
   - update: README.md
   - update: build.sh
   - update: install.sh
