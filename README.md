@@ -35,3 +35,7 @@ or if we want without swift runtime dependencies (ie static executable)
 ```bash
 swift build -c release -Xswiftc -static-executable
 ```
+
+## CI
+
+This projet is build using action [action-swift-cli-build](https://github.com/phimage/action-swift-cli-build)
